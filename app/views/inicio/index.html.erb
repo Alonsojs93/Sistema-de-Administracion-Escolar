@@ -1,0 +1,36 @@
+<h3 class="text text text-center">Inicio</h3>
+<style>
+body {
+    background: url(https://scontent-dft4-3.xx.fbcdn.net/v/t1.0-9/23794865_1267883366691753_3979536298711653983_n.jpg?oh=f6d2113bbdfe14bcea22ce51115b7980&oe=5AA131E5) no-repeat center center fixed;
+}
+</style>
+
+    <% if can? :create, @grupos %>
+        <a href="https://calificaciones-alonsojs93.c9users.io/users/index" class="btn btn-link btn-lg btn-block" role="button">
+            <span style="font-size: 50px" class="glyphicon glyphicon-user" aria-hidden=true></span> Usuarios
+        </a>
+    <% end %>
+    
+    <% if current_user.rol == "administrador" %>
+        <a href="https://calificaciones-alonsojs93.c9users.io/grupos" class="btn btn-link btn-lg btn-block" role="button">
+            <span style="font-size: 50px" class="glyphicon glyphicon-list" aria-hidden=true></span> Grupos
+        </a> 
+    <% end %>
+    
+    <% if current_user.rol == "profesor" %>
+        <a href="https://calificaciones-alonsojs93.c9users.io/grupos" class="btn btn-link btn-lg btn-block" role="button">
+            <span style="font-size: 50px" class="glyphicon glyphicon-list" aria-hidden=true></span> Registros Academicos
+        </a> 
+    <% end %>
+    
+    <% if current_user.rol == "alumno" %>
+        <a href="https://calificaciones-alonsojs93.c9users.io/grupos" class="btn btn-link btn-lg btn-block" role="button">
+            <span style="font-size: 50px" class="glyphicon glyphicon-list" aria-hidden=true></span> Historial académico
+        </a> 
+    <% end %>
+    
+    <% if can? :create, @asigantura %>
+        <a href="https://calificaciones-alonsojs93.c9users.io/asignaturas" class="btn btn-link btn-lg btn-block" role="button">
+            <span style="font-size: 50px" class="glyphicon glyphicon-book" aria-hidden=true></span> Asignaturas
+        </a> 
+    <% end %>

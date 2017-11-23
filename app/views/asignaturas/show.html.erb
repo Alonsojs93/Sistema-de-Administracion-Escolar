@@ -1,0 +1,17 @@
+<p id="notice"><%= notice %></p>
+<div class="col-md-offset text-center">
+    <div class="panel panel-default">
+        <div class="panel-heading">   
+            <h1 class='text text-center'>Asignatura</h1>
+        </div>
+        <div class="panel-heading"> 
+            <h4 class='text text-center'>Nombre</h4>
+        </div>
+        <div class="panel-body ">
+            <%= @asignatura.nombre %>
+            </br>
+            </br>
+        </div>
+    </div>
+    <%= link_to 'Volver', asignaturas_path,class: "btn btn-default" %>
+</div>

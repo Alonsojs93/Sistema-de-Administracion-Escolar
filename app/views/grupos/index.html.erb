@@ -1,0 +1,64 @@
+<p id="notice"><%= notice %></p>
+<div class="panel panel-default">
+  <div class="panel-heading"> 
+    <% if can? :manage, @grupos %>
+      <h2 class='text text-center'>Lista de Grupos</h2>
+    <% end %>
+    <% if current_user.rol == "profesor" %>
+      <h1 class='text text-center'>Registros académicos</h1>
+    <% end %>
+    <% if current_user.rol == "alumno" %>
+      <h1 class='text text-center'>Historial académico</h1>
+    <% end %>
+  </div>
+  <div class="panel-body">
+    <table class= "table table-striped table-bordered">
+      <thead>
+        <tr>
+          <% if can? :show, @grupo %>
+            <th>Alumno</th>
+          <% end %>
+          <% if can? :create, @grupo %>
+            <th class=text-center>Profesor</th>
+          <% end %>
+          <th>Asignatura</th>
+          <th class=text-center>Calificación</th>
+          <th class=text-center>Grupo</th>
+          <% if current_user.rol != "alumno" %>
+            <th colspan="4"></th>
+          <% end %>
+        </tr>
+      </thead>
+      <tbody>
+        <% @grupos.each do |grupo| %>
+          <tr>
+            <% if can? :show, @grupo %>
+              <td><%= grupo.user.nombre_completo %></td>
+            <% end %>
+            <% if can? :create, @grupo %>
+              <td class=text-center><%= grupo.profesor_id %></td>
+            <% end %>
+            <td><%= grupo.asignatura.nombre %></td>
+            <td class=text-center><%= grupo.calificacion %></td>
+            <td class=text-center><%= grupo.grupo %></td>
+            <% if current_user.rol != "alumno" %>
+              <td>
+                <div class="btn-group">
+                  <% if can? :update, @grupo %>
+                    <%= link_to 'Actualizar', edit_grupo_path(grupo), class: "btn btn-default" %>
+                  <% end %>    
+                  <% if can? :destroy, @grupo %> 
+                    <%= link_to 'Eliminar', grupo, method: :delete, data: { confirm: '¿Estás seguro?' }, class: "btn btn-default" %>
+                  <% end %>
+                </div>
+              </td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <% if can? :create, @grupo %>
+    <%= link_to 'Crear grupo', new_grupo_path, class: 'btn btn-default'%>
+  <% end %>
+</div>

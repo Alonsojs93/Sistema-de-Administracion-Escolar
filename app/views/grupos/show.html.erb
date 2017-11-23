@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+<div class="col-md-offset text-center">
+ <div class="panel panel-default">
+  <div class="panel-heading">
+   <h3> Alumno </h3>
+  </div>
+  <div class="panel-body ">
+   <%= @grupo.user.nombre_completo %>
+  </div>
+  <div class="panel-heading"> 
+   <h4 class='text text-center'>Profesor</h4>
+  </div>
+  <div class="panel-body ">
+   <%= @grupo.profesor_id %>
+  </div>      
+  <div class="panel-heading"> 
+   <h4 class='text text-center'>Asignatura</h4>
+  </div>
+  <div class="panel-body ">
+   <%= @grupo.asignatura.nombre %>
+  </div>         
+  <div class="panel-heading"> 
+   <h4 class='text text-center'>Calificación</h4>
+  </div>     
+  <div class="panel-body ">
+   <%= @grupo.calificacion %>
+  </div>         
+  <div class="panel-heading"> 
+   <h4 class='text text-center'>Grupo</h4>
+  </div>
+  <div class="panel-body ">
+    <%= @grupo.grupo %>
+  </div>    
+  <% if can? :update, @grupo %>
+  <%= link_to 'Actualizar', edit_grupo_path(@grupo), class: "btn btn-default"  %> 
+  <% end %>
+  <%= link_to 'Volver', grupos_path, class: "btn btn-default"  %>
+ </div>
+</div>

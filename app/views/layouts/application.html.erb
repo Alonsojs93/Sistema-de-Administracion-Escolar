@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sistema de administración escolar</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <style>
+    body {
+         background-color: #F8F8F8 ; 
+    }
+  </style>
+  
+  <nav class="navbar navbar-inverse" style= "background-color: #070719">
+    <div class="container">
+
+      <div class="navbar-header">
+          <a class="navbar-brand" href="https://calificaciones-alonsojs93.c9users.io">Sistema de Administración Escolar </a>
+      </div>
+
+      <ul class="nav navbar-nav navbar-right">
+  
+        <%- if user_signed_in? %>
+        
+        <li class="dropdown">
+          <a class="dropdown-toggle text text-capitalize" data-toggle="dropdown"><%= current_user.rol %> | <%= current_user.nombre_completo %>
+            <span class="caret"></span> 
+          </a>
+          <ul class="dropdown-menu">
+            <li><%= link_to "Editar usuario",edit_user_registration_path %></li>
+            <li><%= render 'devise/menu/login_items' %></a></li>
+          </ul>
+        </li>
+        <% end %>
+      </ul>
+    </div>
+  </nav>
+  <body>
+    <%= link_to " Volver ", :back, class: 'btn btn-default glyphicon glyphicon-chevron-left'  %>
+    <%= yield %>
+    </br>
+    </br>
+    </br>
+    </br>
+  </body>
+  <nav class="navbar navbar-inverse navbar-fixed-bottom" style= "background-color: #070719">
+    </br><p class="text-center text-muted" >Copyright 2017<p>
+  </nav>
+  <script>
+    $(document).ready(function(){$('[data-toggle="tooltip"]').tooltip();});
+  </script>
+</html>

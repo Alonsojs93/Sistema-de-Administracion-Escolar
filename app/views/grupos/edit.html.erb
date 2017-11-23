@@ -1,0 +1,20 @@
+<div class="col-md-offset text-center">
+  <div class="panel panel-default">
+    <div class="panel-heading">   
+    
+      <% if can? :create, @grupos %>
+        <h1 class='text text-center'>Actualizar Grupos</h1>
+      <% end %>
+      
+      <% if cannot? :create, @grupos %>
+        <h1 class='text text-center'>Actualizar calificación</h1>
+      <% end %>
+    </div>
+    <div class="panel-body">
+      <%= render 'form' %></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br>
+      <%= link_to 'Consultar', @grupo, class: "btn btn-default" %> 
+      <%= link_to 'Volver', grupos_path, class: "btn btn-default" %>
+    </div> 
+  </div>
+</div>
+    

@@ -1,0 +1,59 @@
+<%= form_for(@grupo) do |f| %>
+  <% if @grupo.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@grupo.errors.count, "error") %> prohibited this grupo from being saved:</h2>
+
+      <ul>
+      <% @grupo.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="col-sm-4 col-sm-offset-4">
+    <article class="panel panel-default">
+      <section class="panel-body">
+        
+        <% if can? :manage, @grupo %>
+            <div class="field">
+            <%= f.label :alumno %>
+            <%= f.collection_select :alumno_id, User.where(rol:'alumno').order("apPaterno asc"), :id, :nombre_completo , {prompt: true}, {class: "form-control"} %>
+          </div>
+        <% end %>
+          
+        <% if can? :manage, @grupo %>
+          <div class="field">
+            <%= f.label :profesor %>
+            <%= f.collection_select :profesor_id, User.where(rol:'profesor').order("apPaterno asc"), :id, :nombre_completo, {prompt: true},{class: "form-control"} %>
+          </div>
+        <% end %>  
+        
+        <% if can? :manage, @grupo %>
+          <div class="field">
+            <%= f.label :materia %>
+            <%= f.collection_select :asignatura_id, Asignatura.all.order("nombre asc"), :id, :nombre, {prompt: true}, {class: "form-control"} %>
+          </div>
+        <% end %>  
+          
+        <% if cannot? :manage, @grupo %>
+          <div class="field">
+            <%= f.label :calificacion %>
+            <%= f.text_field :calificacion, class:'form-control' %>
+          </div>
+        <% end %> 
+          
+        <% if can? :manage, @grupo %>
+          <div class="field">
+            <%= f.label :grupo %>
+            <%= f.text_field :grupo, class:'form-control' %>
+          </div>
+        <% end %>   
+          
+          <div class="actions">
+            <%= f.submit %>
+          </div>
+          
+    </section>
+  </article>
+</div>
+<% end %>
